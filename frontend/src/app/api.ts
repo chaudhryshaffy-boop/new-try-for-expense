@@ -39,6 +39,22 @@ export const api = createApi({
 			query: () => ({ url: 'summary' }),
 			providesTags: ['Summary'],
 		}),
+		budgets: builder.query<any[], void>({
+			query: () => ({ url: 'budgets' }),
+			providesTags: ['Budget', 'Summary'],
+		}),
+		createBudget: builder.mutation<any, Partial<any>>({
+			query: (body) => ({ url: 'budgets', method: 'POST', body }),
+			invalidatesTags: ['Budget', 'Summary'],
+		}),
+		updateBudget: builder.mutation<any, { id: number; body: Partial<any> }>({
+			query: ({ id, body }) => ({ url: `budgets/${id}`, method: 'PUT', body }),
+			invalidatesTags: ['Budget', 'Summary'],
+		}),
+		deleteBudget: builder.mutation<{ ok: boolean }, number>({
+			query: (id) => ({ url: `budgets/${id}`, method: 'DELETE' }),
+			invalidatesTags: ['Budget', 'Summary'],
+		}),
 		transactions: builder.query<any[], { params?: Record<string, any> } | void>({
 			query: (arg) => ({ url: 'transactions', params: arg?.params }),
 			providesTags: ['Transaction', 'Summary'],
@@ -58,4 +74,4 @@ export const api = createApi({
 	}),
 });
 
-export const { useHealthQuery, useAccountsQuery, useCreateAccountMutation, useCategoriesQuery, useCreateCategoryMutation, useSummaryQuery, useTransactionsQuery, useCreateTransactionMutation, useUpdateTransactionMutation, useDeleteTransactionMutation } = api;
+export const { useHealthQuery, useAccountsQuery, useCreateAccountMutation, useCategoriesQuery, useCreateCategoryMutation, useSummaryQuery, useBudgetsQuery, useCreateBudgetMutation, useUpdateBudgetMutation, useDeleteBudgetMutation, useTransactionsQuery, useCreateTransactionMutation, useUpdateTransactionMutation, useDeleteTransactionMutation } = api;

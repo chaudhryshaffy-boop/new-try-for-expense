@@ -27,6 +27,8 @@ app.include_router(transactions_router.router, prefix=settings.API_V1_PREFIX, ta
 app.include_router(accounts_router.router, prefix=settings.API_V1_PREFIX, tags=["accounts"])
 app.include_router(categories_router.router, prefix=settings.API_V1_PREFIX, tags=["categories"])
 app.include_router(summary_router.router, prefix=settings.API_V1_PREFIX, tags=["summary"])
+from app.api.routes import budgets as budgets_router
+app.include_router(budgets_router.router, prefix=settings.API_V1_PREFIX, tags=["budgets"])
 
 
 @app.on_event("startup")
