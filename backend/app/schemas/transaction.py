@@ -18,6 +18,17 @@ class TransactionCreate(TransactionBase):
 	pass
 
 
+class TransactionUpdate(BaseModel):
+	amount: Optional[float] = None
+	currency: Optional[str] = None
+	date: Optional[date] = None
+	merchant: Optional[str] = None
+	description: Optional[str] = None
+	account_id: Optional[int] = None
+	category_id: Optional[int] = None
+	tag_ids: Optional[List[int]] = None
+
+
 class TransactionRead(TransactionBase):
 	id: int
 	user_id: str

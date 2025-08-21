@@ -4,6 +4,9 @@ from app.core.config import settings
 from app.api.routes import health as health_router
 from app.api.routes import me as me_router
 from app.api.routes import transactions as transactions_router
+from app.api.routes import accounts as accounts_router
+from app.api.routes import categories as categories_router
+from app.api.routes import summary as summary_router
 from app.db.session import engine
 from app.db.base import Base
 from app import models  # ensure models are imported
@@ -21,6 +24,9 @@ app.add_middleware(
 app.include_router(health_router.router, prefix=settings.API_V1_PREFIX, tags=["health"])
 app.include_router(me_router.router, prefix=settings.API_V1_PREFIX, tags=["auth"])
 app.include_router(transactions_router.router, prefix=settings.API_V1_PREFIX, tags=["transactions"])
+app.include_router(accounts_router.router, prefix=settings.API_V1_PREFIX, tags=["accounts"])
+app.include_router(categories_router.router, prefix=settings.API_V1_PREFIX, tags=["categories"])
+app.include_router(summary_router.router, prefix=settings.API_V1_PREFIX, tags=["summary"])
 
 
 @app.on_event("startup")

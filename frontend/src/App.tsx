@@ -60,12 +60,8 @@ function Home() {
 	)
 }
 
-function Dashboard() {
-	return <div className="text-gray-700">Dashboard coming soon…</div>
-}
-function Transactions() {
-	return <div className="text-gray-700">Transactions coming soon…</div>
-}
+import Dashboard from './pages/Dashboard'
+import Transactions from './pages/Transactions'
 function Budgets() {
 	return <div className="text-gray-700">Budgets coming soon…</div>
 }
